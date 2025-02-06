@@ -1,8 +1,19 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { CardItem, Fligth } from '../../types/flight.types';
+import { Fligth } from '../../types/flight.types';
+import { Seat } from '../../types/seat.types';
+
+interface CardItem {
+  flight: Fligth;
+  seat: Seat;
+}
 
 interface CartState {
   items: CardItem[];
+}
+
+interface RemoveFromCartPayload {
+  flightId: string;
+  seatId: string;
 }
 
 const initialState: CartState = {
@@ -13,27 +24,17 @@ const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    addToCart: (state, action: PayloadAction<Fligth>) => {
-      const existingItem = state.items.find(item => item.id === action.payload.id);
-
-      if (existingItem) {
-        existingItem.quantity += 1;
-      } else {
-        state.items.push({...action.payload, quantity: 1});
-      }
+    addToCart: (state, action: PayloadAction<CardItem>) => {
+      state.items.push(action.payload);
     },
-    removeFromCart: (state, action: PayloadAction<string>) => {
-      state.items = state.items.filter(item => item.id !== action.payload);
-    },
-    updateQuantity: (state, action: PayloadAction<{ id: string, quantity: number }>) => {
-      const item = state.items.find(item => item.id === action.payload.id);
-
-      if (item) {
-        item.quantity = action.payload.quantity;
-      }
+    removeFromCart: (state, action: PayloadAction<RemoveFromCartPayload>) => {
+      state.items = state.items.filter(item => 
+        !(item.flight.id === action.payload.flightId &&
+          item.seat.id === action.payload.seatId)
+      );
     }
   }
 });
 
-export const { addToCart, removeFromCart, updateQuantity } = cartSlice.actions;
+export const { addToCart, removeFromCart } = cartSlice.actions;
 export default cartSlice.reducer;

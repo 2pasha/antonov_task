@@ -36,7 +36,7 @@ export const FlightCard = ({ flight, isFavorite }: FlightCardProps) => {
         </Box>
         <Box my={2}>
           <Typography>Flight ID: {flight.id}</Typography>
-          <Box display="flex" justifyContent="space-between" my={1}>
+          <Box display="flex" justifyContent="space-between" my={1} mb={2}>
             <Box>
               <Typography variant="body1">{flight.from}</Typography>
               <Typography>{new Date(flight.departureTime).toLocaleTimeString()}</Typography>
@@ -46,7 +46,10 @@ export const FlightCard = ({ flight, isFavorite }: FlightCardProps) => {
               <Typography>{new Date(flight.arrivalTime).toLocaleTimeString()}</Typography>
             </Box>
           </Box>
-          <Typography>Terminal: {flight.terminal} • Gate: {flight.gate}</Typography>
+          <Box display="flex" justifyContent="space-between" mb={2}>
+            <Typography>Terminal: {flight.terminal}</Typography>
+            <Typography>Gate: {flight.gate}</Typography>
+          </Box>
           <Typography>Available: {flight.tickets.remaining}/{flight.tickets.total} seats</Typography>
         </Box>
         <Typography variant="h6" color="primary">${flight.price}</Typography>

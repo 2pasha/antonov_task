@@ -13,7 +13,3 @@ export interface Fligth {
     remaining: number
   } 
 }
-
-export interface CardItem extends Fligth {
-  quantity: number;
-}
