@@ -10,7 +10,7 @@ interface DeleteCartItemModalProps {
   item: CartItem;
 }
 
-const Transition = React.forwardRef(function Transition(
+export const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     children: React.ReactElement<any, any>;

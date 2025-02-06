@@ -1,4 +1,3 @@
-import React from "react";
 import { Flight } from "../types/flight.types";
 import { Seat } from "../types/seat.types";
 import {
@@ -8,10 +7,9 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
-  Slide,
   Typography,
 } from "@mui/material";
-import { TransitionProps } from "@mui/material/transitions";
+import { Transition } from './DeleteCartItemModal';
 
 interface SeatBookingModalProps {
   open: boolean;
@@ -20,16 +18,6 @@ interface SeatBookingModalProps {
   flight: Flight;
   seat: Seat;
 }
-
-const Transition = React.forwardRef(function Transition(
-  props: TransitionProps & {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    children: React.ReactElement<any, any>;
-  },
-  ref: React.Ref<unknown>
-) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
 
 export const SeatBookingModal = ({
   open,
