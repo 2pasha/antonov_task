@@ -1,4 +1,4 @@
-export interface Fligth {
+export interface Flight {
   id: string;
   airline: string,
   from: string,

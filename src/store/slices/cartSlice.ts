@@ -1,14 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Fligth } from '../../types/flight.types';
-import { Seat } from '../../types/seat.types';
-
-interface CardItem {
-  flight: Fligth;
-  seat: Seat;
-}
+import { CartItem } from '../../types/cart.types';
 
 interface CartState {
-  items: CardItem[];
+  items: CartItem[];
 }
 
 interface RemoveFromCartPayload {
@@ -17,14 +11,24 @@ interface RemoveFromCartPayload {
 }
 
 const initialState: CartState = {
-  items: [],
+  items: []
+};
+
+const loadCartFromStorage = (): CartState => {
+  if (typeof window === 'undefined') {
+    return initialState;
+  }
+
+  const stored = localStorage.getItem('cart');
+
+  return stored ? JSON.parse(stored) : initialState;
 };
 
 const cartSlice = createSlice({
   name: 'cart',
-  initialState,
+  initialState: loadCartFromStorage(),
   reducers: {
-    addToCart: (state, action: PayloadAction<CardItem>) => {
+    addToCart: (state, action: PayloadAction<CartItem>) => {
       state.items.push(action.payload);
     },
     removeFromCart: (state, action: PayloadAction<RemoveFromCartPayload>) => {
@@ -33,6 +37,14 @@ const cartSlice = createSlice({
           item.seat.id === action.payload.seatId)
       );
     }
+  },
+  extraReducers: (builder) => {
+    builder.addMatcher(
+      () => true,
+      (state) => {
+        localStorage.setItem('cart', JSON.stringify(state));
+      }
+    )
   }
 });
 

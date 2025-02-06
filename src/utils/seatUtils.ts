@@ -1,9 +1,9 @@
-import { Fligth } from '../types/flight.types';
+import { Flight } from '../types/flight.types';
 import { Seat } from '../types/seat.types';
 
 const SEATS_PER_ROW = 6;
 
-export const generateSeats = (flight: Fligth): Seat[] => {
+export const generateSeats = (flight: Flight): Seat[] => {
   const totalRows = Math.ceil(flight.tickets.total / SEATS_PER_ROW);
   const seats: Seat[] = [];
   const occupiedCount = flight.tickets.total - flight.tickets.remaining;

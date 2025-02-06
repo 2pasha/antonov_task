@@ -1,5 +1,5 @@
 import React from "react";
-import { Fligth } from "../types/flight.types";
+import { Flight } from "../types/flight.types";
 import { Seat } from "../types/seat.types";
 import {
   Box,
@@ -17,7 +17,7 @@ interface SeatBookingModalProps {
   open: boolean;
   onClose: () => void;
   onConfirm: () => void;
-  flight: Fligth;
+  flight: Flight;
   seat: Seat;
 }
 

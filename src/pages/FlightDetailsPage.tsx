@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { Fligth } from "../types/flight.types";
+import { Flight } from "../types/flight.types";
 import { Seat } from "../types/seat.types";
 import { getFlightsById } from "../services/api";
 import { addToCart } from "../store/slices/cartSlice";
@@ -18,7 +18,7 @@ export const FlightDetailsPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const [flight, setFlight] = useState<Fligth | null>(null);
+  const [flight, setFlight] = useState<Flight | null>(null);
   const [seats, setSeats] = useState<Seat[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string>("");

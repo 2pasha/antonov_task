@@ -1,12 +1,12 @@
 import { useNavigate } from 'react-router-dom';
-import { Fligth } from '../types/flight.types';
+import { Flight } from '../types/flight.types';
 import { Box, Card, CardContent, IconButton, Typography } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { toggleFavourite } from '../store/slices/flightsSlice';
 import { Star, StarBorder } from '@mui/icons-material';
 
 interface FlightCardProps {
-  flight: Fligth;
+  flight: Flight;
   isFavorite: boolean;
 }
 

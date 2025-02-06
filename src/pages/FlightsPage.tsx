@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Fligth } from '../types/flight.types';
+import { Flight } from '../types/flight.types';
 import { getFlights } from '../services/api';
 import { Layout } from '../components/common/Layout';
 import { Alert, Box, FormControl, Grid, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material';
@@ -11,7 +11,7 @@ import { RootState } from '../store';
 type SortOption = 'price-asc' | 'price-desc' | 'departure';
 
 export const FlightsPage = () => {
-  const [flights, setFlights] = useState<Fligth[]>([]);
+  const [flights, setFlights] = useState<Flight[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [search, setSearch] = useState<string>('');
