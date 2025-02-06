@@ -1,28 +1,38 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface FlightsState {
-  favourites: string[];
+  favorites: string[];
 }
 
 const initialState: FlightsState = {
-  favourites: [],
+  favorites: [],
+};
+
+const loadFavoritesFromStorage = (): FlightsState => {
+  if (typeof window === 'undefined') {
+    return initialState;
+  }
+
+  const stored = localStorage.getItem('favorites');
+
+  return stored ? JSON.parse(stored) : initialState;
 };
 
 export const flightsSlice = createSlice({
   name: 'flights',
-  initialState,
+  initialState: loadFavoritesFromStorage(),
   reducers: {
-    toggleFavourite: (state, action: PayloadAction<string>) => {
-      const index = state.favourites.indexOf(action.payload);
+    toggleFavorite: (state, action: PayloadAction<string>) => {
+      const index = state.favorites.indexOf(action.payload);
 
       if (index === -1) {
-        state.favourites.push(action.payload);
+        state.favorites.push(action.payload);
       } else {
-        state.favourites.splice(index, 1);
+        state.favorites.splice(index, 1);
       }
     }
   },
 });
 
-export const { toggleFavourite } = flightsSlice.actions;
+export const { toggleFavorite: toggleFavorite } = flightsSlice.actions;
 export default flightsSlice.reducer;

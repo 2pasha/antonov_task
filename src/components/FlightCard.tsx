@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { Flight } from '../types/flight.types';
 import { Box, Card, CardContent, IconButton, Typography } from '@mui/material';
 import { useDispatch } from 'react-redux';
-import { toggleFavourite } from '../store/slices/flightsSlice';
+import { toggleFavorite } from '../store/slices/flightsSlice';
 import { Star, StarBorder } from '@mui/icons-material';
 
 interface FlightCardProps {
@@ -28,7 +28,7 @@ export const FlightCard = ({ flight, isFavorite }: FlightCardProps) => {
           <IconButton 
             onClick={(e) => {
               e.stopPropagation();
-              dispatch(toggleFavourite(flight.id));
+              dispatch(toggleFavorite(flight.id));
             }}
           >
             {isFavorite ? <Star color="primary" /> : <StarBorder />}
