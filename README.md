@@ -1,50 +1,61 @@
-# React + TypeScript + Vite
+# Flight Booking Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# [DEMO LINK](https://2pasha.github.io/antonov_task/)
 
-Currently, two official plugins are available:
+A single-page application (SPA) for browsing and booking flight tickets, built with React, TypeScript, and Material-UI.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## Expanding the ESLint configuration
+- **Flight Listing**
+  - Browse available flights in card format
+  - Filter and sort flights
+  - Real-time API data fetching
+  - Loading state indicators
+  - Favorite flights system
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **Flight Details**
+  - Interactive seat selection grid (10x6)
+  - Visual seat status indicators
+  - Real-time seat availability
+  - Detailed flight information display
 
-- Configure the top-level `parserOptions` property like this:
+- **Shopping Cart**
+  - Persistent cart storage
+  - Add/remove flight tickets
+  - Total price calculation
+  - LocalStorage integration
+  - Cart state preservation across page reloads
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## 🛠 Tech Stack
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+- **Core**
+  - Vite
+  - React with TypeScript
+  - Material-UI (MUI)
+  - Redux Toolkit
+  - React Router
+  - Axios
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+- **State Management**
+  - Redux for cart and favorites
+  - LocalStorage persistence
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+- **UI/UX**
+  - Material-UI components
+  - Material Icons
+  - Responsive design
+  - Loading indicators
+  - Error handling
+
+## 🚦 API Endpoints
+
+- GET `/flights` - Retrieve all flights
+- GET `/flights/:id` - Get specific flight details
+
+### Installation
+
+1. Clone the repository: `git clone https://github.com/2pasha/antonov_task.git`
+
+2. Install dependencies: `npm install`
+
+3. Start the development server: `npm run dev`
