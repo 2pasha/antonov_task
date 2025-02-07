@@ -32,6 +32,14 @@ export const flightsSlice = createSlice({
       }
     }
   },
+  extraReducers: (builder) => {
+    builder.addMatcher(
+      () => true,
+      (state) => {
+        localStorage.setItem('favorites', JSON.stringify(state));
+      }
+    )
+  }
 });
 
 export const { toggleFavorite: toggleFavorite } = flightsSlice.actions;
