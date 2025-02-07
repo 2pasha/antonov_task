@@ -8,15 +8,18 @@ interface SeatGridProps {
 }
 
 export const SeatGrid = ({ seats, onSeatSelect }: SeatGridProps) => {
-  const rows = seats.reduce((acc, seat) => {
-    if (!acc[seat.row]) {
-      acc[seat.row] = [];
-    }
+  const rows = seats.reduce(
+    (acc, seat) => {
+      if (!acc[seat.row]) {
+        acc[seat.row] = [];
+      }
 
-    acc[seat.row].push(seat);
+      acc[seat.row].push(seat);
 
-    return acc;
-  }, {} as Record<number, Seat[]>)
+      return acc;
+    },
+    {} as Record<number, Seat[]>
+  );
 
   const getStatusColor = (status: SeatStatus) => {
     switch (status) {
@@ -27,36 +30,36 @@ export const SeatGrid = ({ seats, onSeatSelect }: SeatGridProps) => {
       case 'selected':
         return 'primary.main';
     }
-  }
+  };
 
   return (
     <Box sx={{ my: 4 }}>
-     {Object.entries(rows).map(([rowNum, rowSeats]) => (
-       <Grid2 container spacing={1} key={rowNum} sx={{ mb: 1 }}>
-         <Grid item xs={1}>
-           <Typography>{rowNum}</Typography>
-         </Grid>
-         <Grid item xs={11}>
-           <Grid container spacing={1}>
-             {rowSeats.map((seat) => (
-               <Grid item key={seat.id}>
-                 <Tooltip title={`Row ${seat.row}, Seat ${seat.number}`}>
-                   <span>
-                     <IconButton
-                       onClick={() => seat.status === 'free' && onSeatSelect(seat)}
-                       disabled={seat.status === 'occupied'}
-                       sx={{ color: getStatusColor(seat.status) }}
-                     >
-                       <EventSeat />
-                     </IconButton>
-                   </span>
-                 </Tooltip>
-               </Grid>
-             ))}
-           </Grid>
-         </Grid>
-       </Grid2>
-     ))}
-   </Box>
+      {Object.entries(rows).map(([rowNum, rowSeats]) => (
+        <Grid2 container spacing={1} key={rowNum} sx={{ mb: 1 }}>
+          <Grid item xs={1}>
+            <Typography>{rowNum}</Typography>
+          </Grid>
+          <Grid item xs={11}>
+            <Grid container spacing={1}>
+              {rowSeats.map((seat) => (
+                <Grid item key={seat.id}>
+                  <Tooltip title={`Row ${seat.row}, Seat ${seat.number}`}>
+                    <span>
+                      <IconButton
+                        onClick={() => seat.status === 'free' && onSeatSelect(seat)}
+                        disabled={seat.status === 'occupied'}
+                        sx={{ color: getStatusColor(seat.status) }}
+                      >
+                        <EventSeat />
+                      </IconButton>
+                    </span>
+                  </Tooltip>
+                </Grid>
+              ))}
+            </Grid>
+          </Grid>
+        </Grid2>
+      ))}
+    </Box>
   );
 };

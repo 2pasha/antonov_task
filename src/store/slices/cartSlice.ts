@@ -11,7 +11,7 @@ interface RemoveFromCartPayload {
 }
 
 const initialState: CartState = {
-  items: []
+  items: [],
 };
 
 const loadCartFromStorage = (): CartState => {
@@ -32,11 +32,11 @@ const cartSlice = createSlice({
       state.items.push(action.payload);
     },
     removeFromCart: (state, action: PayloadAction<RemoveFromCartPayload>) => {
-      state.items = state.items.filter(item => 
-        !(item.flight.id === action.payload.flightId &&
-          item.seat.id === action.payload.seatId)
+      state.items = state.items.filter(
+        (item) =>
+          !(item.flight.id === action.payload.flightId && item.seat.id === action.payload.seatId)
       );
-    }
+    },
   },
   extraReducers: (builder) => {
     builder.addMatcher(
@@ -44,8 +44,8 @@ const cartSlice = createSlice({
       (state) => {
         localStorage.setItem('cart', JSON.stringify(state));
       }
-    )
-  }
+    );
+  },
 });
 
 export const { addToCart, removeFromCart } = cartSlice.actions;

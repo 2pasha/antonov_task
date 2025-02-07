@@ -1,3 +1,4 @@
+import React from 'react';
 import { ShoppingCart } from '@mui/icons-material';
 import { AppBar, Badge, Container, IconButton, Toolbar, Typography } from '@mui/material';
 import { useSelector } from 'react-redux';
@@ -14,21 +15,18 @@ export const Layout = ({ children }: LayoutProps) => {
 
   return (
     <>
-      <AppBar position='static'>
+      <AppBar position="static">
         <Toolbar>
           <Typography
             variant="h6"
             component="div"
-            sx={{ flexGrow: 1, cursor: "pointer" }}
+            sx={{ flexGrow: 1, cursor: 'pointer' }}
             onClick={() => navigate('/')}
           >
             Flight Booking
           </Typography>
 
-          <IconButton 
-            color="inherit"
-            onClick={() => navigate('/cart')}
-          >
+          <IconButton color="inherit" onClick={() => navigate('/cart')}>
             <Badge badgeContent={cartItems.length} color="error">
               <ShoppingCart />
             </Badge>
@@ -36,9 +34,7 @@ export const Layout = ({ children }: LayoutProps) => {
         </Toolbar>
       </AppBar>
 
-      <Container sx={{ mt: 4 }}>
-        {children}
-      </Container>
+      <Container sx={{ mt: 4 }}>{children}</Container>
     </>
   );
 };

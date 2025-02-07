@@ -15,17 +15,17 @@ export const FlightCard = ({ flight, isFavorite }: FlightCardProps) => {
   const dispatch = useDispatch();
 
   return (
-    <Card 
-      sx={{ 
+    <Card
+      sx={{
         cursor: 'pointer',
-        '&:hover': { boxShadow: 6 }
+        '&:hover': { boxShadow: 6 },
       }}
       onClick={() => navigate(`/flight/${flight.id}`)}
     >
       <CardContent>
         <Box display="flex" justifyContent="space-between" alignItems="center">
           <Typography variant="h6">{flight.airline}</Typography>
-          <IconButton 
+          <IconButton
             onClick={(e) => {
               e.stopPropagation();
               dispatch(toggleFavorite(flight.id));
@@ -50,9 +50,13 @@ export const FlightCard = ({ flight, isFavorite }: FlightCardProps) => {
             <Typography>Terminal: {flight.terminal}</Typography>
             <Typography>Gate: {flight.gate}</Typography>
           </Box>
-          <Typography>Available: {flight.tickets.remaining}/{flight.tickets.total} seats</Typography>
+          <Typography>
+            Available: {flight.tickets.remaining}/{flight.tickets.total} seats
+          </Typography>
         </Box>
-        <Typography variant="h6" color="primary">${flight.price}</Typography>
+        <Typography variant="h6" color="primary">
+          ${flight.price}
+        </Typography>
       </CardContent>
     </Card>
   );

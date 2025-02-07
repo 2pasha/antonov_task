@@ -1,16 +1,16 @@
-import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
-import { Flight } from "../types/flight.types";
-import { Seat } from "../types/seat.types";
-import { getFlightsById } from "../services/api";
-import { addToCart } from "../store/slices/cartSlice";
-import { Loading } from "../components/common/Loading";
-import { Alert, Box, Button, Card, Divider, Typography } from "@mui/material";
-import { Layout } from "../components/common/Layout";
-import { EventSeat } from "@mui/icons-material";
-import { SeatGrid } from "../components/SeatGrid";
-import { generateSeats } from "../utils/seatUtils";
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
+import { Flight } from '../types/flight.types';
+import { Seat } from '../types/seat.types';
+import { getFlightsById } from '../services/api';
+import { addToCart } from '../store/slices/cartSlice';
+import { Loading } from '../components/common/Loading';
+import { Alert, Box, Button, Card, Divider, Typography } from '@mui/material';
+import { Layout } from '../components/common/Layout';
+import { EventSeat } from '@mui/icons-material';
+import { SeatGrid } from '../components/SeatGrid';
+import { generateSeats } from '../utils/seatUtils';
 import { SeatBookingModal } from '../components/SeatBookingModal';
 
 export const FlightDetailsPage = () => {
@@ -21,7 +21,7 @@ export const FlightDetailsPage = () => {
   const [flight, setFlight] = useState<Flight | null>(null);
   const [seats, setSeats] = useState<Seat[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string>("");
+  const [error, setError] = useState<string>('');
   const [selectedSeat, setSelectedSeat] = useState<Seat | null>(null);
 
   useEffect(() => {
@@ -34,13 +34,13 @@ export const FlightDetailsPage = () => {
         .catch((err) => setError(err.message))
         .finally(() => setLoading(false));
     } else {
-      setError("ID is not provided");
+      setError('ID is not provided');
     }
   }, [id]);
 
   const handleSeatSelect = (seat: Seat) => {
     setSelectedSeat(seat);
-  }
+  };
 
   const handleConfirmBooking = () => {
     if (!flight || !selectedSeat) {
@@ -49,9 +49,9 @@ export const FlightDetailsPage = () => {
 
     dispatch(addToCart({ flight, seat: selectedSeat }));
 
-    setSeats((prevSeats) =>prevSeats.map((s) =>
-        s.id === selectedSeat.id ? { ...s, status: "selected" } : s
-    ));
+    setSeats((prevSeats) =>
+      prevSeats.map((s) => (s.id === selectedSeat.id ? { ...s, status: 'selected' } : s))
+    );
     setSelectedSeat(null);
   };
 
@@ -76,17 +76,13 @@ export const FlightDetailsPage = () => {
         <Box display="flex" justifyContent="space-between" mb={3}>
           <Box>
             <Typography variant="h6">{flight.from}</Typography>
-            <Typography>
-              {new Date(flight.departureTime).toLocaleString()}
-            </Typography>
+            <Typography>{new Date(flight.departureTime).toLocaleString()}</Typography>
             <Typography>Terminal: {flight.terminal}</Typography>
             <Typography>Gate: {flight.gate}</Typography>
           </Box>
           <Box>
             <Typography variant="h6">{flight.to}</Typography>
-            <Typography>
-              {new Date(flight.arrivalTime).toLocaleString()}
-            </Typography>
+            <Typography>{new Date(flight.arrivalTime).toLocaleString()}</Typography>
           </Box>
         </Box>
         <Divider sx={{ my: 2 }} />
@@ -101,7 +97,7 @@ export const FlightDetailsPage = () => {
               <Typography>Available</Typography>
             </Box>
             <Box display="flex" alignItems="center" gap={1}>
-              <EventSeat sx={{ color: "grey.500" }} />
+              <EventSeat sx={{ color: 'grey.500' }} />
               <Typography>Occupied</Typography>
             </Box>
             <Box display="flex" alignItems="center" gap={1}>
@@ -122,14 +118,9 @@ export const FlightDetailsPage = () => {
           )}
         </Box>
 
-        <Box
-          display="flex"
-          justifyContent="space-between"
-          alignItems="center"
-          mt={3}
-        >
+        <Box display="flex" justifyContent="space-between" alignItems="center" mt={3}>
           <Typography variant="h5">Price per seat: ${flight.price}</Typography>
-          <Button variant="contained" onClick={() => navigate("/cart")}>
+          <Button variant="contained" onClick={() => navigate('/cart')}>
             View Cart
           </Button>
         </Box>

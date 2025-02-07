@@ -6,7 +6,7 @@ export const store = configureStore({
   reducer: {
     cart: cartReducer,
     flights: flightsReducer,
-  }
+  },
 });
 
 export type RootState = ReturnType<typeof store.getState>;

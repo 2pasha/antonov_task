@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
-import { Flight } from "../types/flight.types";
-import { getFlights } from "../services/api";
-import { Layout } from "../components/common/Layout";
+import { useEffect, useState } from 'react';
+import { Flight } from '../types/flight.types';
+import { getFlights } from '../services/api';
+import { Layout } from '../components/common/Layout';
 import {
   Alert,
   Box,
@@ -14,21 +14,21 @@ import {
   Tabs,
   TextField,
   Typography,
-} from "@mui/material";
-import { Loading } from "../components/common/Loading";
-import { FlightCard } from "../components/FlightCard";
-import { useSelector } from "react-redux";
-import { RootState } from "../store";
+} from '@mui/material';
+import { Loading } from '../components/common/Loading';
+import { FlightCard } from '../components/FlightCard';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store';
 
-type SortOption = "price-asc" | "price-desc" | "departure";
+type SortOption = 'price-asc' | 'price-desc' | 'departure';
 
 export const FlightsPage = () => {
   const [flights, setFlights] = useState<Flight[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  const [search, setSearch] = useState<string>("");
-  const [sortBy, setSortBy] = useState<SortOption>("departure");
-  const [activeTab, setActiveTab] = useState<"all" | "favorites">("all");
+  const [search, setSearch] = useState<string>('');
+  const [sortBy, setSortBy] = useState<SortOption>('departure');
+  const [activeTab, setActiveTab] = useState<'all' | 'favorites'>('all');
 
   const favorites = useSelector((state: RootState) => state.flights.favorites);
 
@@ -49,15 +49,12 @@ export const FlightsPage = () => {
       )
       .sort((a, b) => {
         switch (sortBy) {
-          case "price-asc":
+          case 'price-asc':
             return a.price - b.price;
-          case "price-desc":
+          case 'price-desc':
             return b.price - a.price;
-          case "departure":
-            return (
-              new Date(a.departureTime).getTime() -
-              new Date(b.departureTime).getTime()
-            );
+          case 'departure':
+            return new Date(a.departureTime).getTime() - new Date(b.departureTime).getTime();
           default:
             return 0;
         }
@@ -65,9 +62,7 @@ export const FlightsPage = () => {
   };
 
   const displayedFlights = getFilteredAndSortedFlights(
-    activeTab === "favorites"
-      ? flights.filter((flight) => favorites.includes(flight.id))
-      : flights
+    activeTab === 'favorites' ? flights.filter((flight) => favorites.includes(flight.id)) : flights
   );
 
   if (loading) {
@@ -115,10 +110,7 @@ export const FlightsPage = () => {
       <Grid container spacing={3}>
         {displayedFlights.map((flight) => (
           <Grid item xs={12} sm={6} md={4} key={flight.id}>
-            <FlightCard
-              flight={flight}
-              isFavorite={favorites.includes(flight.id)}
-            />
+            <FlightCard flight={flight} isFavorite={favorites.includes(flight.id)} />
           </Grid>
         ))}
       </Grid>

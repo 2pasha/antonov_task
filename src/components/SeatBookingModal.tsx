@@ -1,5 +1,5 @@
-import { Flight } from "../types/flight.types";
-import { Seat } from "../types/seat.types";
+import { Flight } from '../types/flight.types';
+import { Seat } from '../types/seat.types';
 import {
   Box,
   Button,
@@ -8,7 +8,7 @@ import {
   DialogContent,
   DialogTitle,
   Typography,
-} from "@mui/material";
+} from '@mui/material';
 import { Transition } from './DeleteCartItemModal';
 
 interface SeatBookingModalProps {

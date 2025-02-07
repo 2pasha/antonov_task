@@ -7,17 +7,16 @@ export const router = createHashRouter([
   {
     path: '/',
     element: <FlightsPage />,
-    errorElement: <div>Error flight page</div>
+    errorElement: <div>Error flight page</div>,
   },
   {
     path: '/flight/:id',
     element: <FlightDetailsPage />,
-    errorElement: <div>Error flight details</div>
-
+    errorElement: <div>Error flight details</div>,
   },
   {
     path: '/cart',
     element: <CartPage />,
-    errorElement: <div>Error loading cart</div>
-  }
+    errorElement: <div>Error loading cart</div>,
+  },
 ]);

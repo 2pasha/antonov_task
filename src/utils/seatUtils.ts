@@ -9,9 +9,8 @@ export const generateSeats = (flight: Flight): Seat[] => {
   const occupiedCount = flight.tickets.total - flight.tickets.remaining;
 
   for (let row = 1; row <= totalRows; row++) {
-    const seatsInThisRow = row === totalRows
-      ? flight.tickets.total % SEATS_PER_ROW || SEATS_PER_ROW
-      : SEATS_PER_ROW
+    const seatsInThisRow =
+      row === totalRows ? flight.tickets.total % SEATS_PER_ROW || SEATS_PER_ROW : SEATS_PER_ROW;
 
     for (let number = 1; number <= seatsInThisRow; number++) {
       seats.push({
@@ -19,19 +18,19 @@ export const generateSeats = (flight: Flight): Seat[] => {
         row,
         number,
         status: 'free',
-      })
+      });
     }
   }
 
   const randomIndxes = new Set<number>();
 
-  while(randomIndxes.size < occupiedCount) {
+  while (randomIndxes.size < occupiedCount) {
     randomIndxes.add(Math.floor(Math.random() * seats.length));
   }
 
-  randomIndxes.forEach(index => {
+  randomIndxes.forEach((index) => {
     seats[index].status = 'occupied';
   });
 
   return seats;
-}
+};

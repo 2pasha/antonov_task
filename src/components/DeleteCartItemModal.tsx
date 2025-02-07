@@ -1,6 +1,14 @@
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Slide, Typography } from '@mui/material';
-import { CartItem } from "../types/cart.types";
-import { TransitionProps } from "@mui/material/transitions";
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Slide,
+  Typography,
+} from '@mui/material';
+import { CartItem } from '../types/cart.types';
+import { TransitionProps } from '@mui/material/transitions';
 import React from 'react';
 
 interface DeleteCartItemModalProps {

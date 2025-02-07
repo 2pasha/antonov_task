@@ -30,7 +30,7 @@ export const flightsSlice = createSlice({
       } else {
         state.favorites.splice(index, 1);
       }
-    }
+    },
   },
   extraReducers: (builder) => {
     builder.addMatcher(
@@ -38,8 +38,8 @@ export const flightsSlice = createSlice({
       (state) => {
         localStorage.setItem('favorites', JSON.stringify(state));
       }
-    )
-  }
+    );
+  },
 });
 
 export const { toggleFavorite: toggleFavorite } = flightsSlice.actions;
